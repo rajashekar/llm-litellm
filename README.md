@@ -18,7 +18,21 @@ Now install this plugin in the same environment as LLM:
 llm install llm-litellm
 ```
 
-Or install from source:
+### Updating to New Versions
+
+To update the plugin to the latest version:
+```bash
+llm install --upgrade llm-litellm
+```
+
+Or using pip directly:
+```bash
+pip install --upgrade llm-litellm
+```
+
+### Installing from Source
+
+For development or to install from source:
 ```bash
 pip install -e .
 ```

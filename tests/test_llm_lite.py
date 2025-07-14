@@ -116,7 +116,7 @@ def test_litellm_chat_model():
     assert model.model_id == "litellm/gpt-3.5-turbo"
     assert model.model_name == "gpt-3.5-turbo"
     assert model.api_base == "http://localhost:4000/v1"
-    assert str(model) == "litellm: gpt-3.5-turbo"
+    assert str(model) == "litellm/gpt-3.5-turbo"
     assert model.needs_key == "litellm"
     assert model.key_env_var == "LITELLM_KEY"
 

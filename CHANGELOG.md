@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] - 2024-07-14
+
+### Fixed
+- Fixed model display in `llm models` list to show full model ID with `litellm/` prefix
+- Models now display as `litellm/model-name` instead of `litellm: model-name` for consistency with other plugins
+
+## [0.1.1] - 2024-07-14
+
+### Fixed
+- Fixed compatibility with older versions of LLM library (Python 3.8 support)
+- Made AsyncChat import optional to support LLM versions that don't have it
+- Updated tests to handle optional async functionality
+
 ## [0.1.0] - 2024-07-14
 
 ### Added
@@ -29,5 +42,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Automatic URL formatting and validation
 - Error handling and user-friendly messages
 
-[Unreleased]: https://github.com/rajashekar/llm-lite/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/rajashekar/llm-lite/releases/tag/v0.1.0
+[Unreleased]: https://github.com/rajashekar/llm-litellm/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/rajashekar/llm-litellm/releases/tag/v0.1.1
+[0.1.0]: https://github.com/rajashekar/llm-litellm/releases/tag/v0.1.0

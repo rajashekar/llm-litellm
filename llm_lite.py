@@ -44,7 +44,7 @@ class LiteLLMChat(_mixin, Chat):
         self._model_name = value
 
     def __str__(self):
-        return "litellm: {}".format(self._model_name)
+        return self.model_id
 
 
 # Only define async chat class if AsyncChat is available
@@ -68,7 +68,7 @@ if HAS_ASYNC_CHAT:
             self._model_name = value
 
         def __str__(self):
-            return "litellm: {}".format(self._model_name)
+            return self.model_id
 else:
     LiteLLMAsyncChat = None
 
