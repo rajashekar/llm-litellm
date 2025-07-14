@@ -1,11 +1,19 @@
 import os
 import httpx
 import llm
-from llm.default_plugins.openai_models import Chat, AsyncChat
+from llm.default_plugins.openai_models import Chat
 from pydantic import Field
 from typing import Optional
 import json
 import click
+
+# Try to import AsyncChat, but make it optional for older LLM versions
+try:
+    from llm.default_plugins.openai_models import AsyncChat
+    HAS_ASYNC_CHAT = True
+except ImportError:
+    AsyncChat = None
+    HAS_ASYNC_CHAT = False
 
 
 class _mixin:
@@ -39,26 +47,30 @@ class LiteLLMChat(_mixin, Chat):
         return "litellm: {}".format(self._model_name)
 
 
-class LiteLLMAsyncChat(_mixin, AsyncChat):
-    needs_key = "litellm"
-    key_env_var = "LITELLM_KEY"
+# Only define async chat class if AsyncChat is available
+if HAS_ASYNC_CHAT:
+    class LiteLLMAsyncChat(_mixin, AsyncChat):
+        needs_key = "litellm"
+        key_env_var = "LITELLM_KEY"
 
-    def __init__(self, model_id, model_name, api_base, **kwargs):
-        self._model_name = model_name
-        super().__init__(model_id, api_base=api_base, **kwargs)
-        # Set model_name after parent initialization
-        self._model_name = model_name
+        def __init__(self, model_id, model_name, api_base, **kwargs):
+            self._model_name = model_name
+            super().__init__(model_id, api_base=api_base, **kwargs)
+            # Set model_name after parent initialization
+            self._model_name = model_name
 
-    @property
-    def model_name(self):
-        return self._model_name
+        @property
+        def model_name(self):
+            return self._model_name
 
-    @model_name.setter
-    def model_name(self, value):
-        self._model_name = value
+        @model_name.setter
+        def model_name(self, value):
+            self._model_name = value
 
-    def __str__(self):
-        return "litellm: {}".format(self._model_name)
+        def __str__(self):
+            return "litellm: {}".format(self._model_name)
+else:
+    LiteLLMAsyncChat = None
 
 
 def get_litellm_url():
@@ -134,9 +146,12 @@ def register_models(register):
         
         # Create model instances
         chat_model = LiteLLMChat(**kwargs)
-        async_chat_model = LiteLLMAsyncChat(**kwargs)
         
-        register(chat_model, async_chat_model)
+        if HAS_ASYNC_CHAT:
+            async_chat_model = LiteLLMAsyncChat(**kwargs)
+            register(chat_model, async_chat_model)
+        else:
+            register(chat_model)
 
 
 @llm.hookimpl

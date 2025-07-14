@@ -15,7 +15,7 @@ First, [install the LLM command-line utility](https://llm.datasette.io/en/stable
 
 Now install this plugin in the same environment as LLM:
 ```bash
-llm install llm-litellmllm
+llm install llm-litellm
 ```
 
 Or install from source:

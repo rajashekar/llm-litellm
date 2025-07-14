@@ -2,7 +2,11 @@ import pytest
 import os
 from unittest.mock import patch, MagicMock
 import json
-from llm_lite import get_litellm_url, get_litellm_models, LiteLLMChat
+from llm_lite import get_litellm_url, get_litellm_models, LiteLLMChat, HAS_ASYNC_CHAT
+
+# Only import LiteLLMAsyncChat if it's available
+if HAS_ASYNC_CHAT:
+    from llm_lite import LiteLLMAsyncChat
 
 
 def test_get_litellm_url_missing():
@@ -132,12 +136,19 @@ def test_register_models_success(mock_get_url, mock_get_models):
     mock_register = MagicMock()
     register_models(mock_register)
     
-    # Should register 2 models (each with chat and async chat)
+    # Should register 2 models
     assert mock_register.call_count == 2
     
     # Check first model registration
     first_call_args = mock_register.call_args_list[0][0]
-    chat_model, async_chat_model = first_call_args
+    
+    if HAS_ASYNC_CHAT:
+        # With async chat, should have both chat and async chat models
+        chat_model, async_chat_model = first_call_args
+        assert isinstance(async_chat_model, LiteLLMAsyncChat)
+    else:
+        # Without async chat, should only have chat model
+        chat_model = first_call_args[0]
     
     assert isinstance(chat_model, LiteLLMChat)
     assert chat_model.model_id == "litellm/gpt-3.5-turbo"
