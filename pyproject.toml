@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "llm-lite"
+name = "llm-litellm"
 version = "0.1.0"
 description = "LLM plugin for LiteLLM proxy server"
 readme = "README.md"
@@ -30,10 +30,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/rajashekar/llm-lite"
-Changelog = "https://github.com/rajashekar/llm-lite/releases"
-Issues = "https://github.com/rajashekar/llm-lite/issues"
-CI = "https://github.com/rajashekar/llm-lite/actions"
+Homepage = "https://github.com/rajashekar/llm-litellm"
+Changelog = "https://github.com/rajashekar/llm-litellm/releases"
+Issues = "https://github.com/rajashekar/llm-litellm/issues"
+CI = "https://github.com/rajashekar/llm-litellm/actions"
 
 [project.entry-points.llm]
 lite = "llm_lite"

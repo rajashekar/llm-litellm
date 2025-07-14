@@ -1,9 +1,9 @@
-# llm-lite
+# llm-litellm
 
-[![PyPI](https://img.shields.io/pypi/v/llm-lite.svg)](https://pypi.org/project/llm-lite/)
-[![Changelog](https://img.shields.io/github/v/release/rajashekar/llm-lite?include_prereleases&label=changelog)](https://github.com/rajashekar/llm-lite/releases)
-[![Tests](https://github.com/rajashekar/llm-lite/workflows/Test/badge.svg)](https://github.com/rajashekar/llm-lite/actions?query=workflow%3ATest)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/rajashekar/llm-lite/blob/main/LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/llm-litellm.svg)](https://pypi.org/project/llm-litellm/)
+[![Changelog](https://img.shields.io/github/v/release/rajashekar/llm-litellm?include_prereleases&label=changelog)](https://github.com/rajashekar/llm-litellm/releases)
+[![Tests](https://github.com/rajashekar/llm-litellm/workflows/Test/badge.svg)](https://github.com/rajashekar/llm-litellm/actions?query=workflow%3ATest)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/rajashekar/llm-litellm/blob/main/LICENSE)
 
 [LLM](https://llm.datasette.io/) plugin for models hosted by [LiteLLM](https://github.com/BerriAI/litellm) proxy server.
 
@@ -15,7 +15,7 @@ First, [install the LLM command-line utility](https://llm.datasette.io/en/stable
 
 Now install this plugin in the same environment as LLM:
 ```bash
-llm install llm-lite
+llm install llm-litellmllm
 ```
 
 Or install from source:
@@ -249,7 +249,7 @@ llm -m litellm/gpt-4 "Compare yourself to Claude"
 To set up this plugin locally, first checkout the code. Then create a new virtual environment:
 
 ```bash
-cd llm-lite
+cd llm-litellm
 python3 -m venv venv
 source venv/bin/activate
 ```
