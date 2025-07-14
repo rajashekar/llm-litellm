@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-lite"
+version = "0.1.0"
+description = "LLM plugin for LiteLLM proxy server"
+readme = "README.md"
+authors = [{name = "Rajashekar Chintalapati"}]
+license = {text = "Apache-2.0"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["llm", "ai", "litellm", "language-models", "plugin"]
+dependencies = [
+    "llm>=0.13",
+    "httpx",
+    "openai>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/rajashekar/llm-lite"
+Changelog = "https://github.com/rajashekar/llm-lite/releases"
+Issues = "https://github.com/rajashekar/llm-lite/issues"
+CI = "https://github.com/rajashekar/llm-lite/actions"
+
+[project.entry-points.llm]
+lite = "llm_lite"
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-mock", "flake8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
